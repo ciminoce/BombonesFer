@@ -1,24 +1,25 @@
-﻿using Bombones.Comun;
-using Bombones.Comun.IRepositorios;
+﻿using Bombones.Comun.IRepositorios;
+using Bombones.Comun;
 using Bombones.Comun.IServicios;
 using Bombones.Entidades.Dtos;
-using Bombones.Entidades.Entidades;
 using System.Data;
+using Bombones.Entidades.Entidades;
 
 namespace Bombones.Servicios.Servicios
 {
-    public class ServiciosClientes : IServiciosClientes
+    public class ServiciosCtasCtes : IServiciosCtasCtes
     {
-        private readonly IRepositorioClientes _repositorio;
+        private readonly IRepositorioCtasCtes _repositorio;
         private readonly IDbConnectionFactory _dbConnectionFactory;
 
-        public ServiciosClientes(IDbConnectionFactory dbConnectionFactory, IRepositorioClientes repositorio)
+        public ServiciosCtasCtes(IDbConnectionFactory dbConnectionFactory, 
+            IRepositorioCtasCtes repositorio)
         {
             _repositorio = repositorio;
             _dbConnectionFactory = dbConnectionFactory;
         }
 
-        public Cliente? GetClientePorId(int clienteId)
+        public List<CtaCte> GetDetalle(int clienteId)
         {
             IDbTransaction tran = null!;
             using (var conn = _dbConnectionFactory.CreateConnection())
@@ -28,7 +29,7 @@ namespace Bombones.Servicios.Servicios
                 {
                     try
                     {
-                        return _repositorio.GetClientePorId(conn, tran, clienteId);
+                        return _repositorio.GetDetalle(conn, tran, clienteId);
                     }
                     catch (Exception)
                     {
@@ -38,10 +39,9 @@ namespace Bombones.Servicios.Servicios
                 }
 
             }
-
         }
 
-        public List<Cliente> GetLista()
+        public List<CtaCteListDto> GetLista()
         {
             IDbTransaction tran = null!;
             using (var conn = _dbConnectionFactory.CreateConnection())
@@ -61,6 +61,7 @@ namespace Bombones.Servicios.Servicios
                 }
 
             }
+
         }
     }
 }

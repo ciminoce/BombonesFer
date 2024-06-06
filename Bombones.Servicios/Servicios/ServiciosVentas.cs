@@ -10,6 +10,7 @@ namespace Bombones.Servicios.Servicios
 {
     public class ServiciosVentas : IServiciosVentas
     {
+        private readonly IRepositorioCtasCtes _repositorioCtasCtes;
         private readonly IRepositorioVentas _repositorioVentas;
         private readonly IRepositorioDetallesVentas _repositorioDetallesVentas;
         private readonly IRepositorioProductos _repositorioProductos;
@@ -18,12 +19,14 @@ namespace Bombones.Servicios.Servicios
         public ServiciosVentas(IRepositorioVentas repositorioVentas,
             IRepositorioDetallesVentas repositorioDetallesVentas,
             IRepositorioProductos repositorioProductos,
-            IDbConnectionFactory dbConnectionFactory)
+            IDbConnectionFactory dbConnectionFactory,
+            IRepositorioCtasCtes repositorioCtasCtes)
         {
             _repositorioVentas = repositorioVentas;
             _repositorioDetallesVentas = repositorioDetallesVentas;
             _repositorioProductos = repositorioProductos;
             _dbConnectionFactory = dbConnectionFactory;
+            _repositorioCtasCtes = repositorioCtasCtes;
         }
 
 
@@ -123,6 +126,19 @@ namespace Bombones.Servicios.Servicios
                             itemVenta.VentaId = venta.VentaId;
                             _repositorioDetallesVentas.Agregar(conn, tran, itemVenta); 
                             _repositorioProductos.ActualizarStock(conn,tran, itemVenta);
+                        }
+                        if (venta.ClienteId != 999999)
+                        {
+                            CtaCte ctaCte = new CtaCte
+                            {
+                                ClienteId = venta.ClienteId,
+                                FechaMovimiento = DateTime.Now,
+                                Movimiento = $"Venta Nro {venta.VentaId}",
+                                Debe = venta.Total,
+                                Haber = 0,
+                                Saldo = venta.Total,
+                            };
+                            _repositorioCtasCtes.Agregar(conn,tran, ctaCte);
                         }
                         tran.Commit();
                     }

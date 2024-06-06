@@ -103,6 +103,18 @@ namespace Bombones.Windows.Helpers
                     r.Cells[2].Value = itemCarrito.Cantidad;                    
                     r.Cells[3].Value = itemCarrito.Total.ToString("C");
                     break;
+                case CtaCteListDto ctaCteListDto:
+                    r.Cells[0].Value=ctaCteListDto.Cliente;
+                    r.Cells[1].Value=ctaCteListDto.Saldo.ToString("C");
+                    break;
+                case CtaCte ctacte:
+                    r.Cells[0].Value = ctacte.FechaMovimiento.ToShortDateString();
+                    r.Cells[1].Value = ctacte.Movimiento;
+                    r.Cells[2].Value = ctacte.Debe.ToString("C");
+                    r.Cells[3].Value = ctacte.Haber.ToString("C");
+                    r.Cells[4].Value=ctacte.Saldo.ToString("C");
+                    break;
+
             }
             r.Tag = item;
         }

@@ -1,14 +1,11 @@
-﻿using Bombones.Entidades.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bombones.Entidades.Dtos;
+using Bombones.Entidades.Entidades;
 
 namespace Bombones.Comun.IServicios
 {
     public interface IServiciosClientes
     {
+        Cliente? GetClientePorId(int clienteId);
         List<Cliente> GetLista();
     }
 }

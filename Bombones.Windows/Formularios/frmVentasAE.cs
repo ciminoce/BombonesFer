@@ -14,7 +14,6 @@ namespace Bombones.Windows.Formularios
         private readonly IServiciosProductos _serviciosProductos;
         private TipoProducto tipoProducto = TipoProducto.Todos;
         private List<ProductoListDto>? lista;   // Lista con todos los productos
-        private List<ProductoListDto>? listaFiltrada;   // Lista con los productos luego de aplicado el filtro
         private ContextMenuStrip? cm;
         private Venta ? venta;  // Variable para devolver la venta a otro form
         public frmVentasAE(IServiciosVentas serviciosVentas, IServiciosProductos serviciosProductos)

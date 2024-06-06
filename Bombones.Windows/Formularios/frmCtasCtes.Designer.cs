@@ -1,6 +1,7 @@
-﻿namespace Bombones.Windows.Formularios
+﻿
+namespace Bombones.Windows.Formularios
 {
-    partial class frnCtasCtes
+    partial class frmCtasCtes
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +30,11 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frnCtasCtes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCtasCtes));
             panel1 = new Panel();
             dgvDatos = new DataGridView();
+            colCliente = new DataGridViewTextBoxColumn();
+            colSaldo = new DataGridViewTextBoxColumn();
             toolStrip1 = new ToolStrip();
             tsbNuevo = new ToolStripButton();
             tsbBorrar = new ToolStripButton();
@@ -43,8 +46,7 @@
             tsbImprimir = new ToolStripButton();
             toolStripSeparator3 = new ToolStripSeparator();
             tsbCerrar = new ToolStripButton();
-            colCliente = new DataGridViewTextBoxColumn();
-            colSaldo = new DataGridViewTextBoxColumn();
+            tsbDetalles = new ToolStripButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             toolStrip1.SuspendLayout();
@@ -78,9 +80,24 @@
             dgvDatos.Size = new Size(850, 405);
             dgvDatos.TabIndex = 0;
             // 
+            // colCliente
+            // 
+            colCliente.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colCliente.HeaderText = "Cliente";
+            colCliente.Name = "colCliente";
+            colCliente.ReadOnly = true;
+            // 
+            // colSaldo
+            // 
+            colSaldo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colSaldo.HeaderText = "Saldo";
+            colSaldo.Name = "colSaldo";
+            colSaldo.ReadOnly = true;
+            colSaldo.Width = 61;
+            // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBorrar, tsbEditar, toolStripSeparator1, tsbFiltrar, tsbActualizar, toolStripSeparator2, tsbImprimir, toolStripSeparator3, tsbCerrar });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBorrar, tsbEditar, tsbDetalles, toolStripSeparator1, tsbFiltrar, tsbActualizar, toolStripSeparator2, tsbImprimir, toolStripSeparator3, tsbCerrar });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(850, 62);
@@ -172,30 +189,27 @@
             tsbCerrar.Text = "Cerrar";
             tsbCerrar.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
-            // colCliente
+            // tsbDetalles
             // 
-            colCliente.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colCliente.HeaderText = "Cliente";
-            colCliente.Name = "colCliente";
-            colCliente.ReadOnly = true;
+            tsbDetalles.Image = Properties.Resources.details_36px;
+            tsbDetalles.ImageScaling = ToolStripItemImageScaling.None;
+            tsbDetalles.ImageTransparentColor = Color.Magenta;
+            tsbDetalles.Name = "tsbDetalles";
+            tsbDetalles.Size = new Size(52, 59);
+            tsbDetalles.Text = "Detalles";
+            tsbDetalles.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbDetalles.Click += tsbDetalles_Click;
             // 
-            // colSaldo
-            // 
-            colSaldo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            colSaldo.HeaderText = "Saldo";
-            colSaldo.Name = "colSaldo";
-            colSaldo.ReadOnly = true;
-            colSaldo.Width = 61;
-            // 
-            // frnCtasCtes
+            // frmCtasCtes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(850, 467);
             Controls.Add(panel1);
             Controls.Add(toolStrip1);
-            Name = "frnCtasCtes";
-            Text = "frnCtasCtes";
+            Name = "frmCtasCtes";
+            Text = "frmCtasCtes";
+            Load += frmCtasCtes_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
             toolStrip1.ResumeLayout(false);
@@ -203,6 +217,7 @@
             ResumeLayout(false);
             PerformLayout();
         }
+
 
         #endregion
 
@@ -221,5 +236,6 @@
         private ToolStripButton tsbCerrar;
         private DataGridViewTextBoxColumn colCliente;
         private DataGridViewTextBoxColumn colSaldo;
+        private ToolStripButton tsbDetalles;
     }
 }

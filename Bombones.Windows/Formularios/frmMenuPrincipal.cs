@@ -56,5 +56,12 @@ namespace Bombones.Windows
             var frm = new frmVentas(DI.Create<IServiciosVentas>());
             frm.ShowDialog();
         }
+
+        private void btnCtaCte_Click(object sender, EventArgs e)
+        {
+            var frm = new frmCtasCtes(DI.Create<IServiciosCtasCtes>(),
+                DI.Create<IServiciosClientes>());
+            frm.ShowDialog();
+        }
     }
 }

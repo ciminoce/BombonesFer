@@ -15,12 +15,37 @@ namespace Bombones.Datos.Repositorios
         {
             _commandFactory = commandFactory;
         }
+
+        public Cliente? GetClientePorId(IDbConnection conn, IDbTransaction tran, int clienteId)
+        {
+            Cliente? cliente = null;
+            var selectQuery = @"SELECT * FROM Clientes WHERE ClienteId=@ClienteId";
+            using (var _cmd=_commandFactory.CreateCommand())
+            {
+                _cmd.Connection = conn;
+                _cmd.CommandText = selectQuery;
+                _cmd.Transaction = tran;
+
+                _commandFactory.AddParameter(_cmd, "@ClienteId", clienteId);
+
+                using (var reader=(SqlDataReader)_cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        cliente=ConstruirCliente(reader);
+                    }
+                }
+            }
+            return cliente;
+        }
+
         public List<Cliente> GetLista(IDbConnection conn, IDbTransaction tran)
         {
             List<Cliente> lista = new List<Cliente>();  // Declaración de la lista de FabricaListDto
 
-            var selectQuery = @"SELECT * FROM Clientes ORDER BY Apellido , Nombre";  
-           
+            var selectQuery = @"SELECT * FROM Clientes ORDER BY Apellido , Nombre";
+
             using (var cmd = _commandFactory.CreateCommand())      // Crea el comando con el string y la conexión
             {
                 cmd.CommandText = selectQuery;
@@ -34,8 +59,8 @@ namespace Bombones.Datos.Repositorios
                         lista.Add(cliente);
                     }
                 }
-            }            
-            
+            }
+
             return lista;
         }
 

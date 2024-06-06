@@ -54,6 +54,9 @@ namespace Bombones.IoC
 
             Bind<IRepositorioDetallesVentas>().To<RepositorioDetallesVentas>();
 
+            Bind<IRepositorioCtasCtes>().To<RepositorioCtasCtes>();
+            Bind<IServiciosCtasCtes>().To<ServiciosCtasCtes>();
+
             Bind<IDbConnectionFactory>().To<SqlConnectionFactory>().WithConstructorArgument(_connectionString);
             Bind<IDbCommandFactory>().To<SqlCommandFactory>();
             Bind<IDbConnection>().To<SqlConnection>();

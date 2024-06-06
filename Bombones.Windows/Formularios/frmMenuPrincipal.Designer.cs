@@ -36,6 +36,7 @@
             btnBombones = new Button();
             btnCajas = new Button();
             btnVentas = new Button();
+            btnCtaCte = new Button();
             SuspendLayout();
             // 
             // btnRellenos
@@ -118,11 +119,22 @@
             btnVentas.UseVisualStyleBackColor = true;
             btnVentas.Click += btnVentas_Click;
             // 
+            // btnCtaCte
+            // 
+            btnCtaCte.Location = new Point(205, 363);
+            btnCtaCte.Name = "btnCtaCte";
+            btnCtaCte.Size = new Size(139, 123);
+            btnCtaCte.TabIndex = 0;
+            btnCtaCte.Text = "Cta.Cte.";
+            btnCtaCte.UseVisualStyleBackColor = true;
+            btnCtaCte.Click += btnCtaCte_Click;
+            // 
             // frmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 551);
+            Controls.Add(btnCtaCte);
             Controls.Add(btnVentas);
             Controls.Add(btnCajas);
             Controls.Add(btnBombones);
@@ -147,5 +159,6 @@
         private Button btnBombones;
         private Button btnCajas;
         private Button btnVentas;
+        private Button btnCtaCte;
     }
 }
